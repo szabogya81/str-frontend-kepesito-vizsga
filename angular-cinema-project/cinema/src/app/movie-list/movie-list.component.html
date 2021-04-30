@@ -1,7 +1,7 @@
 <section class="table-section">
-    <button id="get-button">Get movie List</button>
-    <table>
-        <thead>
+    <button id="get-button" (click)="getMovies()">Get movie List</button>
+    <table class="table table-striped">
+        <thead class="bg-dark">
           <tr>
             <th>Title</th>
             <th>Year</th>
@@ -10,7 +10,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="table-row"></tr>
+
+          <tr *ngFor="let movie of movies | async" class="table-row">
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.year }}</td>
+            <td>{{ movie.category }}</td>
+            <td>
+              <button id="delete-button" class="btn btn-danger" (click)="deleteMovie(movie.id)">
+                Delete
+              </button>
+            </td>
+          </tr>
         </tbody>
     </table>
 </section>
